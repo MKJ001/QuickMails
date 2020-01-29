@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('SmartMailer app is running!');
+    expect(page.getTitleText()).toEqual('QuickMails app is running!');
   });
 
   afterEach(async () => {

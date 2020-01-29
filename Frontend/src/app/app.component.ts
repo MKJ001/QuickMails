@@ -9,7 +9,7 @@ import { BackendService } from './services/backend.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public title = 'SmartMailer';
+  public title = 'QuickMails';
   public isLoading = true;
 
   public faPlus = faPlus;

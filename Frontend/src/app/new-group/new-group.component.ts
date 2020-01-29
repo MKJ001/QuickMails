@@ -3,7 +3,7 @@ import { Component, Output, ViewChild, EventEmitter, TemplateRef } from '@angula
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Email } from '../models/email.model';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, AbstractControl } from '@angular/forms';
 
 @Component({
     selector: 'app-new-group',
@@ -32,18 +32,18 @@ export class NewGroupComponent {
     private editMode = false;
 
     constructor(private modalService: BsModalService) {
-        this.nameControl = new FormControl('', [Validators.required, Validators.maxLength(20)]);
     }
 
-    public open(title: string, editMode = false, group = { emails: [] } as EmailGroup): void {
+    public open(title: string, allGroups: EmailGroup[], group: EmailGroup = null): void {
         this.title = title;
-        this.editMode = editMode;
+        this.editMode = group != null;
 
-        this.nameControl.setValue(group.name);
+        this.nameControl = new FormControl('', [Validators.required, Validators.maxLength(20), this.uniqueNameValidator(allGroups)]);
+
+        this.assignNewGroup(group);
+
+        this.nameControl.setValue(this.group.name);
         this.nameControl.markAsUntouched();
-
-        this.group = Object.assign({}, group);
-        this.group.emails = group.emails.map(item => item);
 
         this.modalRef = this.modalService.show(this.modalTemplate);
     }
@@ -92,5 +92,33 @@ export class NewGroupComponent {
         this.nameControl.markAsTouched();
 
         return this.nameControl.valid;
+    }
+
+    private assignNewGroup(group: EmailGroup): void {
+        if (group == null) {
+            group = { emails: [] } as EmailGroup;
+        }
+
+        this.group = Object.assign({}, group);
+        this.group.emails = group.emails.map(item => item);
+    }
+
+    private uniqueNameValidator(groups: EmailGroup[]) {
+        return (control: AbstractControl) => {
+            if (control.value == null) {
+                return null;
+            }
+
+            const found = groups.find(item => item.name.toLowerCase() === control.value.toString().toLowerCase());
+            if (found == null) {
+                return null;
+            }
+
+            return {
+                uniqueName: {
+                    valid: false
+                }
+            };
+        };
     }
 }

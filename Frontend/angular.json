@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SmartMailer": {
+    "QuickMails": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/SmartMailer",
+            "outputPath": "dist/QuickMails",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "SmartMailer:build"
+            "browserTarget": "QuickMails:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "SmartMailer:build:production"
+              "browserTarget": "QuickMails:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SmartMailer:build"
+            "browserTarget": "QuickMails:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "SmartMailer:serve"
+            "devServerTarget": "QuickMails:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "SmartMailer:serve:production"
+              "devServerTarget": "QuickMails:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "SmartMailer"
+  "defaultProject": "QuickMails"
 }

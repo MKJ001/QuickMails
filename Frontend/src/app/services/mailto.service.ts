@@ -9,7 +9,8 @@ export class MailToService {
             return '';
         }
 
-        return `mailto:${emailGroup.emails.map(item => item.address).join(',')}`;
+        const emailsJoined = emailGroup.emails.map(item => item.address).join(',');
+        return `mailto:${emailsJoined}`;
     }
 
 }

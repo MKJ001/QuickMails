@@ -8,7 +8,7 @@
         <div class="col-auto">
           <h1>Mailing groups</h1>
         </div>
-        <div class="col-auto" (click)="newSiteModal.open('Add new group')">
+        <div class="col-auto" (click)="newSiteModal.open('Add new group', groups)">
           <fa-icon [icon]="faPlus"></fa-icon>
         </div>
       </div>
@@ -24,7 +24,7 @@
             <fa-icon [icon]="faEnvelope"></fa-icon>
           </a>
           <div class="mr-2 d-inline">
-            <fa-icon [icon]="faEdit" (click)="newSiteModal.open('Edit group', true, group)"></fa-icon>
+            <fa-icon [icon]="faEdit" (click)="newSiteModal.open('Edit group', groups, group)"></fa-icon>
           </div>
           <fa-icon [icon]="faTrash" (click)="this.deleteGroup(group.id)"></fa-icon>
         </div>

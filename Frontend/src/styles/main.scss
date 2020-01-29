@@ -27,8 +27,3 @@ fa-icon {
     @extend .is-valid;
 }
 
-$a-tags: 'a, a:active, a:hover, a:visited';
-#{$a-tags} {
-    color: #000;
-    text-decoration: none;
-}
