@@ -1,0 +1,11 @@
+<input #nativeEmailInput 
+    type="email" 
+    name="emailInput"
+    placeholder="Type e-mail address"
+    class="w-auto transparent-input" 
+    [(ngModel)]="inputEmail"
+    (ngModelChange)="emailTooltip.hide()"
+    (focusout)="this.apply()"
+    tooltip="Please enter a valid e-mail address"
+    triggers=""
+    #emailTooltip="bs-tooltip">

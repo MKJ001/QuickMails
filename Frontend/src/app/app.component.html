@@ -1,0 +1,40 @@
+<app-new-group #newSiteModal (gorupAdded)="this.onGrupAdded($event)" (gorupEdited)="this.onGroupEdited($event)">
+</app-new-group>
+
+<div class="container mails-container">
+  <main role="main">
+    <div class="border-bottom border-secondary">
+      <div class="row justify-content-between align-items-center">
+        <div class="col-auto">
+          <h1>Mailing groups</h1>
+        </div>
+        <div class="col-auto" (click)="newSiteModal.open('Add new group')">
+          <fa-icon [icon]="faPlus"></fa-icon>
+        </div>
+      </div>
+    </div>
+    <div class="mail-list" *ngIf="!isLoading; else loading">
+      <div class="row justify-content-between align-items-center" *ngFor="let group of groups">
+        <div class="col-auto">
+          <h3 class="m-0">{{group.name}}</h3>
+          <small>{{group.emails.length}} members</small>
+        </div>
+        <div class="col-auto">
+          <a [href]="group.mailto" *ngIf="group.mailto.length > 0" class="mr-2">
+            <fa-icon [icon]="faEnvelope"></fa-icon>
+          </a>
+          <div class="mr-2 d-inline">
+            <fa-icon [icon]="faEdit" (click)="newSiteModal.open('Edit group', true, group)"></fa-icon>
+          </div>
+          <fa-icon [icon]="faTrash" (click)="this.deleteGroup(group.id)"></fa-icon>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<ng-template #loading>
+  <div class="w-100 p-4 d-flex justify-content-center">
+    <fa-icon [icon]="faSpinner" [spin]="true" size="6x"></fa-icon>
+  </div>
+</ng-template>

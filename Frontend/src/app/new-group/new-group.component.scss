@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.new-mail-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+    .badge {
+        margin: 0.35rem;
+        padding: 0.35rem;
+        font-size: 0.77rem;
+        font-weight: 700;
+        background-color: $emailBadgeColor;
+    }
+}

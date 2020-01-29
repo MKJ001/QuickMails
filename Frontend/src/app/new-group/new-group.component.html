@@ -1,0 +1,61 @@
+<ng-template #modalTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{title}}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="this.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group row">
+            <label for="siteName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="siteName" [formControl]="nameControl">
+                <div class="invalid-feedback">
+                    Name is required and has to be maximum of 20 characters long.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="d-flex justify-content-between w-100">
+                <label class="col-sm-2 col-form-label">Emails</label>
+                <button class="btn btn-sm btn-outline-secondary mr-3"
+                    (click)="this.isNewMailActive = true; newEmail.enable()">
+                    Add new
+                </button>
+            </div>
+
+            <div class="col-auto new-mail-group">
+                <ng-container *ngFor="let email of group.emails; index as i">
+                    <div class="badge badge-pill badge-secondary">
+                        <app-inline-email-input #emailInlineInput [class.d-none]="!email.isEditMode"
+                            (emailChanged)="this.updateEmail(email, $event)">
+                        </app-inline-email-input>
+
+                        <span class="mr-2" [class.d-none]="email.isEditMode">
+                            {{email.address}}
+                        </span>
+
+                        <div class="d-inline mr-1">
+                            <fa-icon [icon]="faEdit"
+                                (click)="email.isEditMode = true; emailInlineInput.enable(email.address)">
+                            </fa-icon>
+                        </div>
+
+                        <fa-icon [icon]="faTrash" (click)="this.removeEmail(i)"></fa-icon>
+                    </div>
+                </ng-container>
+
+                <div class="badge badge-pill badge-secondary" [class.d-none]="!this.isNewMailActive">
+                    <app-inline-email-input #newEmail (emailChanged)="this.addNewEmail($event)">
+                    </app-inline-email-input>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="close()">Cancel</button>
+        <button class="btn btn-success" (click)="save()">Save</button>
+    </div>
+</ng-template>

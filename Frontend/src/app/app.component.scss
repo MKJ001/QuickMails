@@ -1,0 +1,20 @@
+.mail-list {
+    display: block;
+
+    .mail-list-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.mails-container {
+    background-color: #fff;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .mails-container {
+        width: 700px;
+    }
+}

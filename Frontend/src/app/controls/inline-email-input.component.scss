@@ -1,0 +1,12 @@
+
+.transparent-input {
+    background-color: transparent;
+    color: white;
+    border: 0;
+    outline: 0;
+    height: 14px;
+}
+
+::placeholder {
+    color: white;
+}
