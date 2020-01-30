@@ -14,6 +14,9 @@
       </div>
     </div>
     <div class="mail-list" *ngIf="!isLoading; else loading">
+      <div class="p-4" *ngIf="!groups.length">
+        There are no groups created.
+      </div>
       <div class="row justify-content-between align-items-center" *ngFor="let group of groups">
         <div class="col-auto">
           <h3 class="m-0">{{group.name}}</h3>

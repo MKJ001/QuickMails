@@ -1,0 +1,26 @@
+version: '3'
+ 
+services:
+   db:
+     image: mysql:5.7
+     environment:
+       - MYSQL_RANDOM_ROOT_PASSWORD=1234567890
+       - MYSQL_DATABASE=QuickMails
+       - MYSQL_USER=quickmails
+       - MYSQL_PASSWORD=1234567890
+   backend:
+     build: ./Backend
+     depends_on:
+       - db
+     environment:
+       - DB_CONNECTION_STRING=server=db;port=3306;userid=quickmails;password=1234567890;database=QuickMails;
+       - ASPNETCORE_ENVIRONMENT=Development
+       - ASPNETCORE_URLS=http://*:5000/
+     ports:
+       - "58210:5000"
+   frontend:
+     build: ./Frontend
+     depends_on:
+      - backend
+     ports:
+      - "4200:4200"
