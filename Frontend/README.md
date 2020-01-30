@@ -1,6 +1,6 @@
 ## Basic configuration
 
-The application automatically uses http://localhost:58210/api url the default backend. You can change it in backend.service.ts file.
+The app automatically uses http://localhost:58210/api url as a backend. You can change it in backend.service.ts file.
 
 ## Development server
 
