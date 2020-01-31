@@ -1,5 +1,5 @@
 # QuickMailer
-Organize you mailing groups!
+Organize your mailing groups!
 
 ## Docker-compose it up!
 You can simply run this app with two commands:
